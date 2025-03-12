@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Pembeli</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://source.unsplash.com/1600x900/?shopping,market');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .receipt {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: left;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Silahkan Isi Biodata Anda Dibawah...</h2>
+        <form id="purchaseForm" onsubmit="submitForm(event)">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="kode">Kode Pembeli:</label>
+            <input type="number" id="kode" name="kode" required>
+
+            <label for="alamat">Alamat:</label>
+            <input type="text" id="alamat" name="alamat" required>
+
+            <label for="produk">Produk yang Dibeli:</label>
+            <select id="produk" name="produk" required>
+                <option value="Face wash">Face wash</option>
+                <option value="Serum">Serum</option>
+                <option value="Moisturizer">Moisturizer</option>
+                <option value="Toner">Toner</option>
+                <option value="Eksfoliasi">Eksfoliasi</option>
+            </select>
+
+            <label for="jumlah">Jumlah:</label>
+            <input type="number" id="jumlah" name="jumlah" required>
+
+            <label for="sc"> Transaksi:</label>
+            <input type="text" id="sc" name="sc" required>
+
+            <label for="tanggal">Tanggal Transaksi:</label>
+            <input type="date" id="tanggal" name="tanggal" required>
+
+            <button type="submit">Kirim</button>
+            <br><br>
+            <button type="button" onclick="generateReceipt()">Cetak Struk</button>
+        </form>
+        
+        <div id="receipt" class="receipt">
+            <h3>Struk Belanja</h3>
+            <table>
+                <tr><th>Nama</th><td id="rNama"></td></tr>
+                <tr><th>Email</th><td id="rEmail"></td></tr>
+                <tr><th>Kode Pembeli</th><td id="rKode"></td></tr>
+                <tr><th>Alamat</th><td id="rAlamat"></td></tr>
+                <tr><th>Produk</th><td id="rProduk"></td></tr>
+                <tr><th>Jumlah</th><td id="rJumlah"></td></tr>
+                <tr><th>Transaksi</th><td id="rSC"></td></tr>
+                <tr><th>Tanggal</th><td id="rTanggal"></td></tr>
+            </table>
+            <button onclick="window.print()">Print</button>
+        </div>
+    </div>
+    
+    <script>
+        function generateReceipt() {
+            document.getElementById("rNama").innerText = document.getElementById("nama").value;
+            document.getElementById("rEmail").innerText = document.getElementById("email").value;
+            document.getElementById("rKode").innerText = document.getElementById("kode").value;
+            document.getElementById("rAlamat").innerText = document.getElementById("alamat").value;
+            document.getElementById("rProduk").innerText = document.getElementById("produk").value;
+            document.getElementById("rJumlah").innerText = document.getElementById("jumlah").value;
+            document.getElementById("rSC").innerText = document.getElementById("sc").value;
+            document.getElementById("rTanggal").innerText = document.getElementById("tanggal").value;
+            document.getElementById("receipt").style.display = "block";
+        }
+        
+        function submitForm(event) {
+            event.preventDefault();
+            alert("Formulir telah dikirim!");
+        }
+    </script>
+</body>
+</html>
